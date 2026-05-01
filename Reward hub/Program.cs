@@ -33,6 +33,17 @@ namespace Reward_hub
             builder.Services.AddAuthorization();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
+            // إضافة سياسة CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
 
             // 3. إعداد Swagger
             builder.Services.AddSwaggerGen(c =>

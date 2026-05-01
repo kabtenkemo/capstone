@@ -9,18 +9,22 @@ namespace Reward_hub.Models;
 public partial class Comment
 {
     [Key]
-    [Column("CommentID")]
     public int CommentId { get; set; }
 
-    [Column("UserID")]
-    public int UserId { get; set; }
+    public string Content { get; set; } = null!;
 
-    public string CommentText { get; set; } = null!;
+    public int AuthorId { get; set; }
+
+    public int TargetUserId { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime? CreatedAt { get; set; }
 
-    [ForeignKey("UserId")]
-    [InverseProperty("Comments")]
-    public virtual User User { get; set; } = null!;
+    [ForeignKey("AuthorId")]
+    [InverseProperty("CommentAuthors")]
+    public virtual User Author { get; set; } = null!;
+
+    [ForeignKey("TargetUserId")]
+    [InverseProperty("CommentTargetUsers")]
+    public virtual User TargetUser { get; set; } = null!;
 }
