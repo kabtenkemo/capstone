@@ -128,9 +128,9 @@ public class AuthController : ControllerBase
             user.Username,
             user.Email,
             user.Points,
-            Level = user.Level?.LevelName, // افتراض وجود LevelName في كلاس Level
-            Class = user.Class?.ClassName, // اسم الفصل
-            user.UserRole
+            level = user.Level?.LevelName,
+            className = user.Class?.ClassName,
+            userRole = user.UserRole
         });
     }
 
@@ -148,7 +148,7 @@ public class AuthController : ControllerBase
                 u.Username,
                 u.ClassId,
                 u.ParentId,
-                ClassName = u.Class != null ? u.Class.ClassName : null
+                className = u.Class != null ? u.Class.ClassName : null
             })
             .ToList();
 
@@ -180,9 +180,9 @@ public class AuthController : ControllerBase
             child.Username,
             child.Email,
             child.Points,
-            Level = child.Level?.LevelName,
-            Class = child.Class?.ClassName,
-            child.UserRole
+            level = child.Level?.LevelName,
+            className = child.Class?.ClassName,
+            userRole = child.UserRole
         });
     }
 }

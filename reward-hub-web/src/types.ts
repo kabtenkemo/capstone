@@ -52,6 +52,8 @@ export interface PointHistoryEntry {
   reason: string;
   createdAt: string;
   teacherName: string;
+  studentName?: string;
+  studentClassId?: number | null;
 }
 
 export interface CommentEntry {
@@ -61,4 +63,5 @@ export interface CommentEntry {
   authorName: string;
   authorRole?: string | null;
   targetStudentName?: string | null;
+  targetStudentClassId?: number | null;
 }

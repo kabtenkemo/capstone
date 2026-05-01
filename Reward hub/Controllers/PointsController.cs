@@ -109,6 +109,29 @@ public class PointsController : ControllerBase
         return Ok(history);
     }
 
+    [Authorize(Roles = "Teacher,Admin")]
+    [HttpGet("class/{classId}")]
+    public IActionResult GetHistoryByClass(int classId)
+    {
+        var history = _db.PointHistories
+            .Include(p => p.Student)
+            .Include(p => p.Teacher)
+            .Where(p => p.Student.ClassId == classId)
+            .Select(p => new {
+                p.HistoryId,
+                StudentName = p.Student.Username,
+                StudentClassId = p.Student.ClassId,
+                TeacherName = p.Teacher.Username,
+                p.Amount,
+                p.Reason,
+                p.CreatedAt
+            })
+            .OrderByDescending(p => p.CreatedAt)
+            .ToList();
+
+        return Ok(history);
+    }
+
 
     [Authorize]
     [HttpGet("student/{studentId}")]

@@ -55,7 +55,7 @@ public partial class RewardHubContext : DbContext
         {
             entity.HasKey(e => e.LevelId).HasName("PK__Levels__09F03C0691AF0FB0");
 
-            entity.Property(e => e.LevelId).ValueGeneratedNever();
+            entity.Property(e => e.LevelId).ValueGeneratedOnAdd();
         });
 
         modelBuilder.Entity<PointHistory>(entity =>

@@ -56,6 +56,29 @@ public class CommentsController : ControllerBase
         return Ok(comments);
     }
 
+    [Authorize(Roles = "Teacher,Admin")]
+    [HttpGet("class/{classId}")]
+    public IActionResult GetCommentsByClass(int classId)
+    {
+        var comments = _db.Comments
+            .Include(c => c.Author)
+            .Include(c => c.TargetUser)
+            .Where(c => c.TargetUser.ClassId == classId)
+            .Select(c => new {
+                c.CommentId,
+                c.Content,
+                AuthorName = c.Author.Username,
+                AuthorRole = c.Author.UserRole,
+                TargetStudentName = c.TargetUser.Username,
+                TargetStudentClassId = c.TargetUser.ClassId,
+                c.CreatedAt
+            })
+            .OrderByDescending(c => c.CreatedAt)
+            .ToList();
+
+        return Ok(comments);
+    }
+
     [Authorize]
     [HttpGet("student/{studentId}")]
     public IActionResult GetCommentsByStudent(int studentId)

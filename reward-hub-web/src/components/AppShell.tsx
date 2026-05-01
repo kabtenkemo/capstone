@@ -15,15 +15,16 @@ export function AppShell() {
   const { profile, role, childProfile, logout } = useAuth();
   const displayProfile = role === 'Parent' && childProfile ? childProfile : profile;
   const canSeeManagementRoutes = managementRoles.has(role ?? '');
-
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <div>
-          <img src="/logo.png" alt="Reward Hub Logo" className="brand-logo" />
-          <div className="brand-copy">
-            <h1>Reward Hub</h1>
-            <p>Reward tracking portal</p>
+        <div className="sidebar-top">
+          <div className="brand-row">
+            <img src="/logo.png" alt="Reward Hub Logo" className="brand-logo" />
+            <div className="brand-copy">
+              <h1>Reward Hub</h1>
+              <p>Reward tracking portal</p>
+            </div>
           </div>
         </div>
 
@@ -50,15 +51,12 @@ export function AppShell() {
       <div className="main-column">
         <header className="topbar">
           <div>
-            <h2>Reward Hub</h2>
-            <p>Manage points, comments, and student progress.</p>
+            <h2>{displayProfile?.username ?? 'Reward Hub'}</h2>
           </div>
 
           <div className="topbar-badges">
             <span className="badge">{role ?? 'Unknown role'}</span>
-            <span className="badge subtle">
-              {displayProfile?.className ? `Class ${displayProfile.className}` : 'No class assigned'}
-            </span>
+            <span className="badge subtle">{displayProfile?.className ?? 'No class assigned'}</span>
             {displayProfile ? <span className="badge subtle">Points {displayProfile.points}</span> : null}
           </div>
         </header>

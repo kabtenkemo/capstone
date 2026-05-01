@@ -94,8 +94,10 @@ export const api = {
     body: JSON.stringify(payload)
   }),
   historyAll: async () => request<PointHistoryEntry[]>('/Points/all-history', { method: 'GET' }),
+  historyByClass: async (classId: number) => request<PointHistoryEntry[]>(`/Points/class/${classId}`, { method: 'GET' }),
   historyByStudent: async (studentId: number) => request<PointHistoryEntry[]>(`/Points/student/${studentId}`, { method: 'GET' }),
   commentsAll: async () => request<CommentEntry[]>('/Comments/all', { method: 'GET' }),
+  commentsByClass: async (classId: number) => request<CommentEntry[]>(`/Comments/class/${classId}`, { method: 'GET' }),
   commentsByStudent: async (studentId: number) => request<CommentEntry[]>(`/Comments/student/${studentId}`, { method: 'GET' }),
   addComment: async (payload: CommentRequestPayload) => request('/Comments/add', {
     method: 'POST',
