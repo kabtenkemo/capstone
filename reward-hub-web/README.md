@@ -16,9 +16,8 @@ npm install
 VITE_API_BASE_URL=https://localhost:7199/api
 ```
 
-For Vercel, set the same variable as a production environment value in the
-project settings, or copy `.env.vercel.example` to `.env.production` and replace
-the placeholder API URL with your deployed backend endpoint.
+For Vercel, set `VITE_API_BASE_URL=/api` in production. The Vercel rewrite will
+forward `/api/*` requests to the backend.
 
 3. Run the app:
 
@@ -37,6 +36,7 @@ npm run build
 - Build command: `npm run build`
 - Publish directory: `dist`
 - Required environment variable: `VITE_API_BASE_URL`
+- Vercel rewrite: `/api/*` -> `http://reward-hub.runasp.net/api/*`
 
 ## Features
 

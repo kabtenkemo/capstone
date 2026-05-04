@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://reward-hub.runasp.net/api/:path*"
+    }
+  ]
+}
