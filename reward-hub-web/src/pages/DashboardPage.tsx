@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { api } from '../lib/api';
 import type { CommentEntry, LeaderboardEntry, PointHistoryEntry, StudentOption } from '../types';
 import { SectionCard, StatCard } from '../components/ui';
@@ -82,13 +82,24 @@ function getStudentProgress(level: string | null, points: number) {
 
 function TreeMini({ level, points }: { level: string | null; points: number }) {
   const progress = getStudentProgress(level, points);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const prevLevelRef = useRef<number>(progress.stage);
+
+  useEffect(() => {
+    if (prevLevelRef.current !== progress.stage) {
+      setIsAnimating(true);
+      const timer = setTimeout(() => setIsAnimating(false), 600);
+      prevLevelRef.current = progress.stage;
+      return () => clearTimeout(timer);
+    }
+  }, [progress.stage]);
 
   return (
     <div className="tree-mini">
       <div className="tree-mini__header">
         <div>
           <p className="eyebrow">Student Mode</p>
-          <h3>{progress.label}</h3>
+          <h3 className={isAnimating ? 'level-up-bounce' : ''}>{progress.label}</h3>
         </div>
         <span className="badge subtle">{points} pts</span>
       </div>
