@@ -10,7 +10,14 @@ import type {
   StudentOption
 } from '../types';
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://localhost:7199/api').replace(/\/$/, '');
+// Default API endpoints for dev/prod. In Vercel production we prefer the
+// configured VITE_API_BASE_URL (set to `/api`), otherwise fall back to the
+// deployed backend URL to avoid mixed-content or routing issues.
+const _env = import.meta.env;
+const defaultProd = 'https://reward-hub.runasp.net/api';
+const defaultDev = 'https://localhost:7199/api';
+const envBase = _env.VITE_API_BASE_URL;
+const API_BASE_URL = ((_env.PROD ? (envBase || defaultProd) : (envBase || defaultDev))).replace(/\/$/, '');
 
 function getToken() {
   return localStorage.getItem('rewardhub_token');
