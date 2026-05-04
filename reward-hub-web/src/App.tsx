@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { AppShell } from './components/AppShell';
+import { BackgroundTree } from './components/BackgroundTree';
 import { useAuth } from './context/AuthContext';
 import { DashboardPage } from './pages/DashboardPage';
 import { LeaderboardPage } from './pages/LeaderboardPage';
@@ -85,24 +86,27 @@ function RootRedirect() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<GuestRoute />}>
-        <Route path="/login" element={<LoginPage />} />
-      </Route>
-
-      <Route element={<ProtectedRoute />}>
-        <Route element={<AppShell />}>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/leaderboard" element={<LeaderboardPage />} />
-          <Route element={<ManagementRoute />}>
-            <Route path="/points" element={<PointsPage />} />
-            <Route path="/comments" element={<CommentsPage />} />
-          </Route>
-          <Route path="/profile" element={<ProfilePage />} />
+    <>
+      <BackgroundTree />
+      <Routes>
+        <Route element={<GuestRoute />}>
+          <Route path="/login" element={<LoginPage />} />
         </Route>
-      </Route>
 
-      <Route path="*" element={<RootRedirect />} />
-    </Routes>
+        <Route element={<ProtectedRoute />}>
+          <Route element={<AppShell />}>
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route element={<ManagementRoute />}>
+              <Route path="/points" element={<PointsPage />} />
+              <Route path="/comments" element={<CommentsPage />} />
+            </Route>
+            <Route path="/profile" element={<ProfilePage />} />
+          </Route>
+        </Route>
+
+        <Route path="*" element={<RootRedirect />} />
+      </Routes>
+    </>
   );
 }
