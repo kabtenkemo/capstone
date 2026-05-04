@@ -82,7 +82,8 @@ namespace Reward_hub
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            var swaggerEnabled = app.Environment.IsDevelopment() || builder.Configuration.GetValue<bool>("Swagger:Enabled");
+            if (swaggerEnabled)
             {
                 app.UseSwagger();
                 app.UseSwaggerUI(options =>
