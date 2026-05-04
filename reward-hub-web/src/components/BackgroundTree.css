@@ -1,0 +1,88 @@
+.background-tree-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+.tree-svg {
+  position: absolute;
+  bottom: -10px;
+  right: 5%;
+  width: 350px;
+  height: auto;
+  transform-origin: bottom center;
+  animation: sway 6s ease-in-out infinite alternate;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+@keyframes sway {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
+}
+
+.tree-crown {
+  animation: breathe 4s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes breathe {
+  0% { transform: scale(0.98); }
+  100% { transform: scale(1.02); }
+}
+
+.falling-leaf {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #4CAF50;
+  border-radius: 50% 0 50% 0; /* Leaf shape */
+  opacity: 0;
+  top: 30%;
+  right: 15%;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(calc(-50px - 10vw), 70vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Generating different path and timing for each leaf */
+.leaf-0 { right: 8%; animation: fall 7s linear infinite 0.5s; background: #43A047; }
+.leaf-1 { right: 12%; animation: fall 9s linear infinite 2s; background: #388E3C; }
+.leaf-2 { right: 18%; animation: fall 6s linear infinite 1.2s; background: #4CAF50; }
+.leaf-3 { right: 15%; animation: fall 8s linear infinite 3.5s; background: #2E7D32; }
+.leaf-4 { right: 10%; animation: fall 7s linear infinite 4.1s; background: #43A047; transform: scale(0.8); }
+.leaf-5 { right: 22%; animation: fall 10s linear infinite 0.8s; background: #81C784; }
+.leaf-6 { right: 14%; animation: fall 6s linear infinite 5s; background: #4CAF50; }
+.leaf-7 { right: 20%; animation: fall 8s linear infinite 2.5s; background: #388E3C; transform: scale(1.1); }
+.leaf-8 { right: 9%; animation: fall 7.5s linear infinite 6s; background: #2E7D32; }
+.leaf-9 { right: 17%; animation: fall 9.5s linear infinite 3s; background: #4CAF50; }
+.leaf-10 { right: 11%; animation: fall 6.5s linear infinite 1.8s; background: #43A047; }
+.leaf-11 { right: 25%; animation: fall 8.5s linear infinite 4.7s; background: #81C784; transform: scale(0.9); }
+.leaf-12 { right: 13%; animation: fall 7.2s linear infinite 0.2s; background: #388E3C; }
+.leaf-13 { right: 19%; animation: fall 9.2s linear infinite 5.5s; background: #2E7D32; }
+.leaf-14 { right: 7%; animation: fall 6.8s linear infinite 2.9s; background: #4CAF50; }
+.leaf-15 { right: 21%; animation: fall 8.8s linear infinite 6.4s; background: #43A047; }
+.leaf-16 { right: 16%; animation: fall 7.7s linear infinite 1.5s; background: #81C784; transform: scale(1.2); }
+.leaf-17 { right: 23%; animation: fall 9.8s linear infinite 4.2s; background: #388E3C; }
+.leaf-18 { right: 12%; animation: fall 6.2s linear infinite 0.9s; background: #2E7D32; }
+.leaf-19 { right: 24%; animation: fall 8.2s linear infinite 3.8s; background: #4CAF50; }
