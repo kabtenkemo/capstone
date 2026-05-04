@@ -17,7 +17,24 @@ const _env = import.meta.env;
 const defaultProd = 'https://reward-hub.runasp.net/api';
 const defaultDev = 'https://localhost:7199/api';
 const envBase = _env.VITE_API_BASE_URL;
-const API_BASE_URL = normalizeApiBase((_env.PROD ? (envBase || defaultProd) : (envBase || defaultDev)));
+const API_BASE_URL = normalizeApiBase(resolveApiBase(_env.PROD, envBase));
+
+function resolveApiBase(isProd: boolean, envValue?: string) {
+  if (!isProd) {
+    return envValue || defaultDev;
+  }
+
+  if (!envValue) {
+    return '/api';
+  }
+
+  const isHttpsPage = typeof window !== 'undefined' && window.location?.protocol === 'https:';
+  if (isHttpsPage && envValue.startsWith('http:')) {
+    return '/api';
+  }
+
+  return envValue || defaultProd;
+}
 
 function normalizeApiBase(rawBase: string) {
   const trimmed = rawBase.replace(/\/$/, '');
