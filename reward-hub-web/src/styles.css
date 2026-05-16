@@ -442,52 +442,54 @@ textarea {
 
 .tree-mini__scene {
   position: relative;
-  min-height: 320px;
+  min-height: 360px;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible;
   background:
-    radial-gradient(circle at 22% 18%, rgba(255, 245, 200, 0.7), transparent 28%),
-    radial-gradient(circle at 78% 14%, rgba(255, 255, 255, 0.6), transparent 22%),
-    linear-gradient(135deg, #fef9f3 0%, #f5e8d8 60%, #e8dcc8 100%);
+    radial-gradient(circle at 22% 18%, rgba(255, 245, 200, 0.8), transparent 28%),
+    radial-gradient(circle at 78% 14%, rgba(255, 255, 255, 0.7), transparent 22%),
+    linear-gradient(135deg, #fffef9 0%, #f8f0e0 50%, #efe5d0 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1200px;
+  perspective: 1000px;
 }
 
 .tree-mini__svg {
-  width: 90%;
-  max-width: 240px;
+  width: 95%;
+  max-width: 280px;
   height: auto;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
-  animation: tree-sway 5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.12));
+  animation: tree-gentle-sway 6s ease-in-out infinite alternate;
 }
 
-@keyframes tree-sway {
+@keyframes tree-gentle-sway {
   0% {
-    transform: rotate(-2deg);
+    transform: translateX(-2px) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateX(0) rotate(0deg);
   }
   100% {
-    transform: rotate(2deg);
+    transform: translateX(2px) rotate(1.5deg);
   }
 }
 
 .tree-mini__trunk {
-  animation: trunk-grow 1s ease-out forwards;
+  animation: trunk-draw 1.2s ease-out forwards;
 }
 
 .tree-mini__branch {
-  animation: branch-grow 0.8s ease-out forwards;
+  animation: branch-draw 0.9s ease-out forwards;
 }
 
 .tree-mini__crown {
-  animation: crown-bloom 1.2s ease-out forwards;
-  transform-origin: center 150px;
+  animation: crown-bloom 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-origin: center 160px;
 }
 
-@keyframes trunk-grow {
+@keyframes trunk-draw {
   from {
-    stroke-width: 0;
     opacity: 0;
   }
   to {
@@ -495,24 +497,32 @@ textarea {
   }
 }
 
-@keyframes branch-grow {
+@keyframes branch-draw {
   from {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    opacity: 0;
   }
   to {
+    stroke-dasharray: 200;
     stroke-dashoffset: 0;
+    opacity: 1;
   }
 }
 
 @keyframes crown-bloom {
-  from {
+  0% {
     opacity: 0;
-    transform: scale(0.7) translateY(20px);
+    transform: scale(0.5) translateY(30px);
+    filter: blur(4px);
   }
-  to {
+  50% {
+    opacity: 0.8;
+  }
+  100% {
     opacity: 1;
     transform: scale(1) translateY(0);
+    filter: blur(0px);
   }
 }
 
