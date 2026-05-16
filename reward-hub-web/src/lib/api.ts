@@ -15,7 +15,8 @@ import type {
 // deployed backend URL to avoid mixed-content or routing issues.
 const _env = import.meta.env;
 const defaultProd = 'https://reward-hub.runasp.net/api';
-const defaultDev = 'https://localhost:7199/api';
+// Use the local backend started here (dotnet run) during development
+const defaultDev = 'http://localhost:5213';
 const envBase = _env.VITE_API_BASE_URL;
 const API_BASE_URL = normalizeApiBase(resolveApiBase(_env.PROD, envBase));
 

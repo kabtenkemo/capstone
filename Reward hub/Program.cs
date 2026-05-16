@@ -14,8 +14,18 @@ namespace Reward_hub
             var builder = WebApplication.CreateBuilder(args);
 
             // 1. تسجيل الـ DbContext
+            // Use explicit connection strings for local development vs production
+            var localConn = "Server=db50636.public.databaseasp.net; Database=db50636; User Id=db50636; Password=9Gb@#n8E3Zx%; Encrypt=True; TrustServerCertificate=True; MultipleActiveResultSets=True;";
+            var prodConn = "Server=db50636.databaseasp.net; Database=db50636; User Id=db50636; Password=9Gb@#n8E3Zx%; Encrypt=False; MultipleActiveResultSets=True;";
+
+            // If a ConnectionStrings:DefaultConnection is present in configuration, prefer it.
+            var configured = builder.Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = !string.IsNullOrWhiteSpace(configured)
+                ? configured
+                : (builder.Environment.IsDevelopment() ? localConn : prodConn);
+
             builder.Services.AddDbContext<RewardHubContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(connectionString));
 
             // 2. إعداد الـ Authentication (JWT)
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

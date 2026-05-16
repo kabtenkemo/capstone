@@ -5,6 +5,7 @@ import { BackgroundTree } from './components/BackgroundTree';
 import { useAuth } from './context/AuthContext';
 import { DashboardPage } from './pages/DashboardPage';
 import { LeaderboardPage } from './pages/LeaderboardPage';
+import { FarmPage } from './pages/FarmPage';
 import { LoginPage } from './pages/LoginPage';
 import { CommentsPage } from './pages/CommentsPage';
 import { PointsPage } from './pages/PointsPage';
@@ -97,6 +98,7 @@ export default function App() {
           <Route element={<AppShell />}>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/farm" element={<FarmPage />} />
             <Route element={<ManagementRoute />}>
               <Route path="/points" element={<PointsPage />} />
               <Route path="/comments" element={<CommentsPage />} />

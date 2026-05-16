@@ -3,6 +3,7 @@ import { SectionCard } from '../components/ui';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../lib/api';
 import type { PointHistoryEntry, StudentOption } from '../types';
+import { Tree } from '../components/Tree';
 
 export function PointsPage() {
   const { profile, role, childProfile } = useAuth();
@@ -231,6 +232,20 @@ export function PointsPage() {
               </div>
             ))}
           </div>
+        </SectionCard>
+
+        <SectionCard title="Student Tree" subtitle="Visual progress based on points">
+          {profile || childProfile ? (
+            <Tree points={
+              // prefer selected student if it's the current user or the parent's child
+              (role === 'Parent' && childProfile && String(childProfile.userId) === studentId) ? childProfile.points :
+              (profile && String(profile.userId) === studentId) ? profile.points :
+              // otherwise fall back to summing the visible history as an approximation
+              history.reduce((s, i) => s + i.amount, 0)
+            } />
+          ) : (
+            <p className="muted-text">Sign in to see the tree</p>
+          )}
         </SectionCard>
       </div>
     </div>

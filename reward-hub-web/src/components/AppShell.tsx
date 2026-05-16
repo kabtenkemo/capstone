@@ -6,6 +6,7 @@ const managementRoles = new Set(['Admin', 'Teacher']);
 const navItems = [
   { to: '/', label: 'Dashboard' },
   { to: '/leaderboard', label: 'Leaderboard' },
+  { to: '/farm', label: 'Farm' },
   { to: '/points', label: 'Points', managementOnly: true },
   { to: '/comments', label: 'Comments', managementOnly: true },
   { to: '/profile', label: 'Profile' }
