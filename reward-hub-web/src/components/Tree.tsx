@@ -25,21 +25,30 @@ export const Tree: React.FC<TreeProps> = ({ points = 0, stage, pointsPerStage = 
         <div className="badge">{points} pts</div>
       </div>
 
-        <div className={`tree-mini__scene tree-mini__scene--${Math.max(0, Math.min(3, computedStage - 1))}`}>
-        <img
-          src={`/tree/${computedStage}.png`}
-          alt={`Tree stage ${computedStage}`}
-          style={{
-              maxWidth: '92%',
-              maxHeight: '260px',
-            height: 'auto',
-              width: 'auto'
-          }}
-        />
+      <div className={`tree-mini__scene tree-mini__scene--stage${computedStage}`}>
+        {/* Tree Trunk */}
+        <div className="tree-trunk" />
+        
+        {/* Tree Crown - grows with stages */}
+        <div className="tree-crown">
+          <div className="tree-crown__layer tree-crown__layer--1" />
+          {computedStage >= 2 && <div className="tree-crown__layer tree-crown__layer--2" />}
+          {computedStage >= 3 && <div className="tree-crown__layer tree-crown__layer--3" />}
+          {computedStage >= 4 && <div className="tree-crown__layer tree-crown__layer--4" />}
+          {computedStage >= 5 && <div className="tree-crown__layer tree-crown__layer--5" />}
+        </div>
+
+        {/* Fruits */}
+        <div className="tree-fruits">
+          {computedStage >= 2 && <div className="tree-fruit tree-fruit--1" />}
+          {computedStage >= 3 && <div className="tree-fruit tree-fruit--2" />}
+          {computedStage >= 4 && <div className="tree-fruit tree-fruit--3" />}
+          {computedStage >= 5 && <div className="tree-fruit tree-fruit--4" />}
+        </div>
       </div>
 
       <div className="tree-mini__footer">
-        <p>Progress to next stage</p>
+        <p>Stage {computedStage} / {maxStages}</p>
       </div>
 
       <div style={{ marginTop: 10 }} className="tree-mini__bar">

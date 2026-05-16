@@ -442,130 +442,174 @@ textarea {
 
 .tree-mini__scene {
   position: relative;
-  --tree-scale: 1;
   min-height: 280px;
   border-radius: 20px;
   overflow: hidden;
-      background:
-        radial-gradient(circle at 22% 18%, rgba(255, 245, 200, 0.7), transparent 28%),
-        radial-gradient(circle at 78% 14%, rgba(255, 255, 255, 0.6), transparent 22%),
-        linear-gradient(135deg, #fef9f3 0%, #f5e8d8 60%, #e8dcc8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(255, 245, 200, 0.7), transparent 28%),
+    radial-gradient(circle at 78% 14%, rgba(255, 255, 255, 0.6), transparent 22%),
+    linear-gradient(135deg, #fef9f3 0%, #f5e8d8 60%, #e8dcc8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
 }
 
-.tree-mini__sky {
+/* Tree Trunk */
+.tree-trunk {
   position: absolute;
-  inset: 0;
-      display: none;
-}
-
-.tree-mini__scene::before {
-    display: none;
-}
-
-.tree-mini__scene::after {
-    display: none;
-}
-
-.tree-mini__tree {
-  position: absolute;
+  bottom: 0;
   left: 50%;
-  bottom: 17%;
-  width: 74px;
-  height: 122px;
-  transform: translateX(-50%) scale(var(--tree-scale));
-  border-radius: 18px 18px 16px 16px;
-      display: none;
-}
-
-.tree-mini__tree::before,
-.tree-mini__tree::after {
-    display: none;
-}
-
-.tree-mini__tree::before {
-  top: -74px;
-  width: 150px;
-  height: 126px;
-  background:
-    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.24), transparent 18%),
-    linear-gradient(180deg, #a6de7c 0%, #60b04c 52%, #3c8a37 100%);
-  box-shadow: 0 12px 24px rgba(44, 105, 45, 0.18);
+  transform: translateX(-50%);
+  width: 24px;
+  height: 80px;
+  background: linear-gradient(90deg, #8b6f47 0%, #a0825f 50%, #8b6f47 100%);
+  border-radius: 12px 12px 8px 8px;
+  box-shadow: 
+    inset 1px 2px 4px rgba(255, 255, 255, 0.2),
+    -4px 8px 12px rgba(0, 0, 0, 0.15);
   z-index: 1;
+  animation: trunk-grow 0.8s ease-out;
 }
 
-.tree-mini__tree::after {
-  top: -62px;
-  width: 182px;
-  height: 128px;
-  background:
-    radial-gradient(circle at 60% 28%, rgba(255, 255, 255, 0.18), transparent 16%),
-    linear-gradient(180deg, #7ec960 0%, #419141 52%, #286e2f 100%);
-  clip-path: ellipse(48% 44% at 50% 50%);
-  box-shadow: 0 14px 24px rgba(38, 95, 42, 0.2);
+/* Tree Crown Container */
+.tree-crown {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
 }
 
-.tree-mini__scene--0 .tree-mini__tree::before {
-  top: -28px;
-  width: 34px;
-  height: 34px;
-  background: radial-gradient(circle at 35% 35%, #fff8dd 0%, #d1bf67 100%);
-  box-shadow: 0 0 0 10px rgba(214, 40, 40, 0.06);
+/* Crown Layers */
+.tree-crown__layer {
+  position: absolute;
+  border-radius: 50% 50% 50% 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: crown-grow 0.6s ease-out forwards;
+  background:
+    radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.3), transparent 40%),
+    linear-gradient(135deg, #68b82d 0%, #4a9e1f 50%, #2d7a14 100%);
+  box-shadow: 0 8px 20px rgba(45, 122, 20, 0.2);
 }
 
-.tree-mini__scene--0 .tree-mini__tree::after {
-  top: -10px;
-  width: 84px;
-  height: 44px;
-  background: linear-gradient(180deg, #dff6be, #93cc57 68%, #5ea637 100%);
-  clip-path: ellipse(46% 42% at 50% 50%);
+.tree-crown__layer--1 {
+  width: 100px;
+  height: 90px;
+  bottom: 0;
+  animation-delay: 0s;
 }
 
-.tree-mini__scene--1 .tree-mini__tree::before {
-  top: -78px;
-  width: 142px;
-  height: 104px;
-  background: linear-gradient(180deg, #ade282, #64b14a 58%, #428e36 100%);
+.tree-crown__layer--2 {
+  width: 130px;
+  height: 110px;
+  bottom: 35px;
+  animation-delay: 0.15s;
 }
 
-.tree-mini__scene--1 .tree-mini__tree::after {
-  top: -58px;
-  width: 172px;
-  height: 124px;
-  background: linear-gradient(180deg, #8fcf66, #519741 56%, #307533 100%);
+.tree-crown__layer--3 {
+  width: 160px;
+  height: 130px;
+  bottom: 70px;
+  animation-delay: 0.3s;
 }
 
-.tree-mini__scene--2 .tree-mini__tree::before {
-  top: -84px;
-  width: 162px;
-  height: 118px;
-  background: linear-gradient(180deg, #9fd86e, #53a140 56%, #2e7a31 100%);
-}
-
-.tree-mini__scene--2 .tree-mini__tree::after {
-  top: -64px;
-  width: 194px;
+.tree-crown__layer--4 {
+  width: 190px;
   height: 140px;
-  background: linear-gradient(180deg, #85cc61, #42963d 56%, #236d2c 100%);
+  bottom: 100px;
+  animation-delay: 0.45s;
 }
 
-.tree-mini__scene--3 .tree-mini__tree::before {
-  top: -90px;
-  width: 176px;
-  height: 128px;
-  background: linear-gradient(180deg, #a8e47c, #5aa744 58%, #2e7b31 100%);
+.tree-crown__layer--5 {
+  width: 220px;
+  height: 150px;
+  bottom: 125px;
+  animation-delay: 0.6s;
 }
 
-.tree-mini__scene--3 .tree-mini__tree::after {
-  top: -70px;
-  width: 214px;
-  height: 156px;
-  background: linear-gradient(180deg, #86d163, #3d8937 56%, #216b2a 100%);
+/* Fruits */
+.tree-fruits {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
 }
 
+.tree-fruit {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffd700 0%, #ffaa00 40%, #cc6600 100%);
+  box-shadow:
+    0 4px 12px rgba(204, 102, 0, 0.35),
+    inset -1px -1px 3px rgba(0, 0, 0, 0.15),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+  animation: fruit-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.tree-fruit--1 {
+  left: 35%;
+  top: 35%;
+  animation-delay: 0.2s;
+}
+
+.tree-fruit--2 {
+  left: 62%;
+  top: 42%;
+  animation-delay: 0.35s;
+}
+
+.tree-fruit--3 {
+  left: 48%;
+  top: 15%;
+  animation-delay: 0.5s;
+}
+
+.tree-fruit--4 {
+  left: 72%;
+  top: 60%;
+  animation-delay: 0.65s;
+}
+
+@keyframes trunk-grow {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 80px;
+    opacity: 1;
+  }
+}
+
+@keyframes crown-grow {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes fruit-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 
 .tree-mini__bar {
