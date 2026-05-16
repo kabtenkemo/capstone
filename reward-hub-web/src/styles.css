@@ -442,7 +442,7 @@ textarea {
 
 .tree-mini__scene {
   position: relative;
-  min-height: 280px;
+  min-height: 320px;
   border-radius: 20px;
   overflow: hidden;
   background:
@@ -455,159 +455,64 @@ textarea {
   perspective: 1200px;
 }
 
-/* Tree Trunk */
-.tree-trunk {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 80px;
-  background: linear-gradient(90deg, #8b6f47 0%, #a0825f 50%, #8b6f47 100%);
-  border-radius: 12px 12px 8px 8px;
-  box-shadow: 
-    inset 1px 2px 4px rgba(255, 255, 255, 0.2),
-    -4px 8px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1;
-  animation: trunk-grow 0.8s ease-out;
+.tree-mini__svg {
+  width: 90%;
+  max-width: 240px;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+  animation: tree-sway 5s ease-in-out infinite alternate;
 }
 
-/* Tree Crown Container */
-.tree-crown {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
+@keyframes tree-sway {
+  0% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(2deg);
+  }
 }
 
-/* Crown Layers */
-.tree-crown__layer {
-  position: absolute;
-  border-radius: 50% 50% 50% 40%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  animation: crown-grow 0.6s ease-out forwards;
-  background:
-    radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.3), transparent 40%),
-    linear-gradient(135deg, #68b82d 0%, #4a9e1f 50%, #2d7a14 100%);
-  box-shadow: 0 8px 20px rgba(45, 122, 20, 0.2);
+.tree-mini__trunk {
+  animation: trunk-grow 1s ease-out forwards;
 }
 
-.tree-crown__layer--1 {
-  width: 100px;
-  height: 90px;
-  bottom: 0;
-  animation-delay: 0s;
+.tree-mini__branch {
+  animation: branch-grow 0.8s ease-out forwards;
 }
 
-.tree-crown__layer--2 {
-  width: 130px;
-  height: 110px;
-  bottom: 35px;
-  animation-delay: 0.15s;
-}
-
-.tree-crown__layer--3 {
-  width: 160px;
-  height: 130px;
-  bottom: 70px;
-  animation-delay: 0.3s;
-}
-
-.tree-crown__layer--4 {
-  width: 190px;
-  height: 140px;
-  bottom: 100px;
-  animation-delay: 0.45s;
-}
-
-.tree-crown__layer--5 {
-  width: 220px;
-  height: 150px;
-  bottom: 125px;
-  animation-delay: 0.6s;
-}
-
-/* Fruits */
-.tree-fruits {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.tree-fruit {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffd700 0%, #ffaa00 40%, #cc6600 100%);
-  box-shadow:
-    0 4px 12px rgba(204, 102, 0, 0.35),
-    inset -1px -1px 3px rgba(0, 0, 0, 0.15),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.4);
-  animation: fruit-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-.tree-fruit--1 {
-  left: 35%;
-  top: 35%;
-  animation-delay: 0.2s;
-}
-
-.tree-fruit--2 {
-  left: 62%;
-  top: 42%;
-  animation-delay: 0.35s;
-}
-
-.tree-fruit--3 {
-  left: 48%;
-  top: 15%;
-  animation-delay: 0.5s;
-}
-
-.tree-fruit--4 {
-  left: 72%;
-  top: 60%;
-  animation-delay: 0.65s;
+.tree-mini__crown {
+  animation: crown-bloom 1.2s ease-out forwards;
+  transform-origin: center 150px;
 }
 
 @keyframes trunk-grow {
   from {
-    height: 0;
+    stroke-width: 0;
     opacity: 0;
   }
   to {
-    height: 80px;
     opacity: 1;
   }
 }
 
-@keyframes crown-grow {
+@keyframes branch-grow {
+  from {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes crown-bloom {
   from {
     opacity: 0;
-    transform: translateX(-50%) scale(0.6);
+    transform: scale(0.7) translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateX(-50%) scale(1);
-  }
-}
-
-@keyframes fruit-pop {
-  0% {
-    opacity: 0;
-    transform: scale(0.4);
-  }
-  70% {
-    transform: scale(1.15);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
 }
 
