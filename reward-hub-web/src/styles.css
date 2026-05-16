@@ -446,41 +446,24 @@ textarea {
   min-height: 220px;
   border-radius: 20px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 20% 14%, rgba(255, 235, 176, 0.92), rgba(255, 235, 176, 0) 20%),
-    radial-gradient(circle at 80% 16%, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 12%),
-    linear-gradient(180deg, #fffef9 0%, #fff7eb 58%, #f0e2cb 100%);
+      background: #f5f5f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 }
 
 .tree-mini__sky {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95), transparent 15%),
-    radial-gradient(circle at 78% 16%, rgba(255, 255, 255, 0.85), transparent 13%),
-    radial-gradient(circle at 60% 10%, rgba(255, 255, 255, 0.7), transparent 12%);
+      display: none;
 }
 
 .tree-mini__scene::before {
-  content: '';
-  position: absolute;
-  right: 10%;
-  top: 10%;
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff9e0 0%, #ffd66f 48%, rgba(255, 214, 111, 0) 72%);
-  filter: blur(0.2px);
+    display: none;
 }
 
 .tree-mini__scene::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0;
-  height: 32%;
-  background:
-    radial-gradient(ellipse at center, rgba(135, 202, 112, 0.88), rgba(88, 150, 63, 0.96) 58%, rgba(60, 116, 47, 1) 100%);
-  clip-path: ellipse(76% 50% at 50% 100%);
+    display: none;
 }
 
 .tree-mini__tree {
@@ -491,23 +474,12 @@ textarea {
   height: 122px;
   transform: translateX(-50%) scale(var(--tree-scale));
   border-radius: 18px 18px 16px 16px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.14), transparent 18%),
-    linear-gradient(180deg, #a86a42 0%, #7a492c 58%, #55311d 100%);
-  box-shadow:
-    inset 0 10px 16px rgba(255, 255, 255, 0.12),
-    inset -12px 0 14px rgba(0, 0, 0, 0.12),
-    0 16px 24px rgba(54, 31, 15, 0.14);
-  animation: tree-grow 1.2s ease-out both;
+      display: none;
 }
 
 .tree-mini__tree::before,
 .tree-mini__tree::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
+    display: none;
 }
 
 .tree-mini__tree::before {
@@ -591,114 +563,7 @@ textarea {
   background: linear-gradient(180deg, #86d163, #3d8937 56%, #216b2a 100%);
 }
 
-.tree-mini__branch,
-.tree-mini__leaf,
-.tree-leaf {
-  position: absolute;
-  pointer-events: none;
-}
 
-.tree-mini__branch {
-  z-index: 3;
-}
-
-.tree-mini__leaf {
-  z-index: 4;
-}
-
-.tree-mini__branch {
-  border-radius: 999px;
-  background: linear-gradient(90deg, #8b5a35, #6f4126);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.18);
-}
-
-.tree-mini__branch--left {
-  left: 18%;
-  top: 48%;
-  width: 52px;
-  height: 8px;
-  transform: rotate(-24deg);
-}
-
-.tree-mini__branch--right {
-  right: 16%;
-  top: 46%;
-  width: 54px;
-  height: 8px;
-  transform: rotate(24deg);
-}
-
-.tree-mini__branch--top {
-  left: 50%;
-  top: 34%;
-  width: 36px;
-  height: 8px;
-  transform: translateX(-50%) rotate(90deg);
-}
-
-.tree-mini__leaf,
-.tree-leaf {
-  border-radius: 55% 45% 58% 42%;
-  box-shadow: 0 8px 14px rgba(37, 90, 32, 0.14);
-  animation: leaf-breathe 5s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.tree-mini__leaf::after,
-.tree-leaf::after {
-  content: '';
-  position: absolute;
-  inset: 18% 24% 38%;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.16);
-  filter: blur(0.2px);
-}
-
-.tree-mini__scene--0 .tree-mini__leaf {
-  background: linear-gradient(135deg, #dff6be, #aede69 48%, #71b93b 100%);
-}
-
-.tree-mini__scene--1 .tree-mini__leaf {
-  background: linear-gradient(135deg, #d2f0a8, #9bcc55 48%, #63a92f 100%);
-}
-
-.tree-mini__scene--2 .tree-mini__leaf {
-  background: linear-gradient(135deg, #c6e89a, #83bb46 48%, #4d8f27 100%);
-}
-
-.tree-mini__scene--3 .tree-mini__leaf {
-  background: linear-gradient(135deg, #b8e186, #6aa83a 48%, #387b1e 100%);
-}
-
-.tree-mini__fruits {
-  position: absolute;
-  inset: 0;
-}
-
-.tree-mini__fruit {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 28% 28%, #ffe8a3 0%, #ffc944 36%, #e6761a 100%);
-  box-shadow: 
-    0 6px 16px rgba(227, 92, 0, 0.28),
-    inset -1px -1px 3px rgba(0, 0, 0, 0.1),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  animation: fruit-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-.tree-mini__scene--1 .tree-mini__fruit:nth-child(1) { left: 58%; top: 34%; }
-.tree-mini__scene--2 .tree-mini__fruit:nth-child(1) { left: 40%; top: 24%; }
-.tree-mini__scene--2 .tree-mini__fruit:nth-child(2) { left: 60%; top: 32%; }
-.tree-mini__scene--2 .tree-mini__fruit:nth-child(3) { left: 52%; top: 14%; }
-.tree-mini__scene--3 .tree-mini__fruit:nth-child(1) { left: 30%; top: 28%; }
-.tree-mini__scene--3 .tree-mini__fruit:nth-child(2) { left: 44%; top: 14%; }
-.tree-mini__scene--3 .tree-mini__fruit:nth-child(3) { left: 60%; top: 24%; }
-.tree-mini__scene--3 .tree-mini__fruit:nth-child(4) { left: 26%; top: 52%; }
-.tree-mini__scene--3 .tree-mini__fruit:nth-child(5) { left: 52%; top: 58%; }
-.tree-mini__scene--3 .tree-mini__fruit:nth-child(6) { left: 72%; top: 42%; }
 
 .tree-mini__bar {
   width: 100%;

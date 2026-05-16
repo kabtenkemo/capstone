@@ -25,30 +25,17 @@ export const Tree: React.FC<TreeProps> = ({ points = 0, stage, pointsPerStage = 
         <div className="badge">{points} pts</div>
       </div>
 
-      <div className={`tree-mini__scene tree-mini__scene--${Math.max(0, Math.min(3, computedStage - 1))}`}>
-        <div className="tree-mini__sky" />
-        <div className="tree-mini__tree" />
-
-        {/* Fallback to static images under /tree/1.png .. /tree/6.png served from repo root */}
+        <div className={`tree-mini__scene tree-mini__scene--${Math.max(0, Math.min(3, computedStage - 1))}`}>
         <img
           src={`/tree/${computedStage}.png`}
           alt={`Tree stage ${computedStage}`}
           style={{
-            position: 'absolute',
-            left: '50%',
-            bottom: '6%',
-            transform: 'translateX(-50%)',
-            maxWidth: '60%',
+              maxWidth: '80%',
+              maxHeight: '180px',
             height: 'auto',
-            zIndex: 3
+              width: 'auto'
           }}
         />
-
-        <div className="tree-mini__fruits">
-          {Array.from({ length: Math.min(6, Math.floor(computedStage)) }).map((_, i) => (
-            <div key={i} className="tree-mini__fruit" />
-          ))}
-        </div>
       </div>
 
       <div className="tree-mini__footer">
