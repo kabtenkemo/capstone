@@ -30,8 +30,8 @@ export const Tree: React.FC<TreeProps> = ({ points = 0, stage, pointsPerStage = 
           src={`/tree/${computedStage}.png`}
           alt={`Tree stage ${computedStage}`}
           style={{
-              maxWidth: '80%',
-              maxHeight: '180px',
+              maxWidth: '92%',
+              maxHeight: '260px',
             height: 'auto',
               width: 'auto'
           }}
